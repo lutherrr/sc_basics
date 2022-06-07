@@ -1,0 +1,17 @@
+#N canvas 103 22 655 471 10;
+#X obj 32 102 grannie-basher;
+#X obj 294 50 noise~;
+#X obj 252 325 dac~;
+#X obj 253 303 *~ 0.6;
+#X floatatom 320 311 5 0 0 0 - - -;
+#X obj 374 345 hsl 128 15 0 10 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X connect 0 0 3 0;
+#X connect 0 1 3 0;
+#X connect 1 0 0 0;
+#X connect 1 0 0 1;
+#X connect 3 0 2 1;
+#X connect 3 0 2 0;
+#X connect 4 0 3 1;
+#X connect 5 0 3 1;
+#X coords 0 0 1 1 400 140 0;

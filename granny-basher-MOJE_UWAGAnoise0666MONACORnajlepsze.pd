@@ -1,0 +1,14 @@
+#N canvas 103 22 586 406 10;
+#X obj 265 320 dac~;
+#X obj 28 109 grannie-basher;
+#X obj 318 13 adc~;
+#X floatatom 333 306 5 0 0 0 - - -;
+#X obj 266 298 *~ 1;
+#X connect 1 0 4 0;
+#X connect 1 1 4 0;
+#X connect 2 0 1 0;
+#X connect 2 0 1 1;
+#X connect 3 0 4 1;
+#X connect 4 0 0 1;
+#X connect 4 0 0 0;
+#X coords 0 0 1 1 400 140 0;
