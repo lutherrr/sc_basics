@@ -1,0 +1,32 @@
+#N canvas 347 33 472 505 10;
+#X obj 259 288 + 48;
+#X obj 259 163 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 259 199 metro 1000;
+#X obj 259 231 random 12;
+#X text 32 51 Random pitches across one octave;
+#X text 130 231 A 'random' object;
+#X text 130 198 A 'metro' object;
+#X text 131 256 A '+' object;
+#X text 129 161 A toggle;
+#X floatatom 259 260 5 0 0 0 - - -;
+#X floatatom 259 314 5 0 0 0 - - -;
+#X obj 258 450 dac~;
+#X obj 259 405 osc~;
+#X obj 306 326 hsl 50 15 1 100 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 2600 1;
+#X obj 259 344 *;
+#X floatatom 260 377 5 0 0 0 - - -;
+#X floatatom 335 168 5 0 0 0 - - -;
+#X connect 0 0 10 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 3 0 9 0;
+#X connect 9 0 0 0;
+#X connect 10 0 14 0;
+#X connect 12 0 11 0;
+#X connect 12 0 11 1;
+#X connect 13 0 14 1;
+#X connect 14 0 15 0;
+#X connect 15 0 12 0;
+#X connect 16 0 2 1;
