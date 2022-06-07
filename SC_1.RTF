@@ -1,0 +1,622 @@
+{\rtf1\ansi\ansicpg1250\cocoartf1138\cocoasubrtf510
+{\fonttbl\f0\fnil\fcharset0 Consolas-Bold;\f1\fmodern\fcharset0 Courier;\f2\fnil\fcharset0 Monaco;
+\f3\fnil\fcharset0 Consolas;\f4\fnil\fcharset0 Menlo-Bold;\f5\fnil\fcharset0 Verdana;
+}
+{\colortbl;\red255\green255\blue255;\red38\green38\blue38;\red129\green32\blue29;\red121\green33\blue25;
+\red3\green58\blue150;\red26\green26\blue26;\red217\green217\blue217;\red0\green42\blue163;\red42\green42\blue42;
+\red241\green241\blue241;\red191\green0\blue0;\red0\green0\blue191;\red158\green28\blue16;\red0\green26\blue171;
+\red0\green32\blue162;\red52\green89\blue27;\red0\green41\blue161;\red135\green34\blue21;\red96\green96\blue96;
+\red0\green115\blue0;}
+\deftab720
+\pard\pardeftab720
+
+\f0\b\fs36 \cf2 POLY\
+\
+\pard\pardeftab720
+
+\f1\b0\fs28 \cf3 // 128 sine waves with random freq mixed down to stereo:\
+\
+\{ Splay.ar(SinOsc.ar(\{ExpRand(100, 5e3)\} ! 128)) \}.play;\
+\
+\pard\pardeftab720
+
+\f2\fs18 \cf0 ExpRand(0.01, 1)		\cf4 // exponential distribution; \
+\cf0 					\cf4 // both numbers must have the same sign.
+\f1\fs28 \cf3 \
+\pard\pardeftab720
+
+\f0\b\fs36 \cf2 \
+========
+\f3\b0\fs24 \
+\
+(\
+var trig;\
+var wait = 4;\
+Task(\{\
+	20.do(\{\
+		trig = [1, 1.5].wchoose([0.6, 0.3]);\
+		\{Resonz.ar(
+\f2 \cf5 WhiteNoise
+\f3 \cf2 .ar(trig, 0, 666*rrand(5,10)), Rand(200,2000), 0.006) ! 2\}.play;\
+		(wait + rrand(0.1,1)).wait;\
+		wait = wait - rrand(0.01, 0.2);\
+	\});\
+	\
+\}).play\
+)\
+=======\
+\pard\pardeftab720
+
+\f2\fs36 \cf0 e
+\f1\fs22 \cf6 \cb7 = (\
+\{\
+	FreeVerb.ar(\
+		(1-
+\f2\fs18 \cf8 \cb1 LFSaw\cf0 .ar
+\f1\fs22 \cf6 \cb7 (Line.ar(147,5147,1200,1,0,2)))\
+		* (1-
+\f2\fs18 \cf8 \cb1 LFSaw\cf0 .ar
+\f1\fs22 \cf6 \cb7 (Line.ar(1117,17,1200,1,0,2)))\
+		\
+	\
+		*0.05\
+		,0.7\
+		,1\
+	);\
+\}.play\
+)
+\f2\fs18 \cf0 \cb1 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural
+
+\f4\b\fs38 \cf9 \cb10 \
+\pard\pardeftab720
+
+\f2\b0\fs36 \cf0 \cb1 e.free;\
+\
+===\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural
+
+\fs18 \cf11 / noisy 
+\fs26 UWAGA!!
+\fs18 \cf0 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural
+
+\fs26 \cf0 c=
+\fs18 (			\
+\{ \cf12 Gepin\cf0 .ar(\cf12 LFDNoise3\cf0 .ar([0.2,0.4]).range(490,710),0,\
+	[	\
+		\cf12 LFDNoise3\cf0 .ar(140.3),\cf12 LFDNoise3\cf0 .ar(79.542).range(100,1000),\
+		\cf12 LFDNoise3\cf0 .ar(60.3),\cf12 LFDNoise3\cf0 .ar(223.54).range(100,1000),\
+		\cf12 LFDNoise3\cf0 .ar(830.3),\cf12 LFDNoise3\cf0 .ar(23.5423).range(100,1000),\
+		\cf12 LFDNoise3\cf0 .ar(90.3),\cf12 LFDNoise3\cf0 .ar(553.54).range(100,1000),\
+		\cf12 LFDNoise3\cf0 .ar(140.3),\cf12 LFDNoise3\cf0 .ar(134.54).range(100,1000),\
+		\cf12 LFDNoise3\cf0 .ar(10.3),\cf12 LFDNoise3\cf0 .ar(654.84).range(100,1000),\
+		\cf12 LFDNoise3\cf0 .ar(30.3),\cf12 LFDNoise3\cf0 .ar(34.94).range(100,1000),\
+		\cf12 LFDNoise3\cf0 .ar(650.3),\cf12 LFDNoise3\cf0 .ar(4.45).range(100,1000),\
+		\cf12 LFDNoise3\cf0 .ar(10.3),\cf12 LFDNoise3\cf0 .ar(54.84).range(100,1000),\
+		\cf12 LFDNoise3\cf0 .ar(30.3),\cf12 LFDNoise3\cf0 .ar(34.94).range(100,1000),\
+		\cf12 LFDNoise3\cf0 .ar(50.3),\cf12 LFDNoise3\cf0 .ar(4.45).range(100,1000)\
+	] )\}.play\
+)\
+\
+\pard\pardeftab560
+
+\fs24 \cf0 c.free;\
+\
+\pard\pardeftab560
+
+\fs38 \cf0 ----Bass--UWAGA!---
+\fs18 \
+\
+\pard\pardeftab720
+\cf13 //wandering bass/ powerline\
+\pard\pardeftab720
+
+\fs32 \cf0 n=
+\fs18  \{\cf14 Pan2\cf0 .ar(\cf14 Gendy1\cf0 .ar(1,1,1.0,1.0,30,50,0.3,0.05,5))\}.play;\
+\
+
+\fs32 n.free;\
+\
+\pard\pardeftab720
+\cf11 QWANTYZACJA !!! MOUSE 
+\fs24  6 bit quantisation
+\fs18 \cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720
+
+\fs26 \cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720
+
+\fs38 \cf0 f=
+\fs26  \{\cf12 Pan2\cf0 .ar((\cf12 Gendy2\cf0 .ar(3,4,maxfreq:2000,minfreq:20, a:\cf12 MouseX\cf0 .kr(0.0,1.0),c:\cf12 MouseY\cf0 .kr(0.0,1.0))).round(1.0/(2**5)))\}.play;\
+\
+
+\fs38 f.free;\
+\
+=====\
+\pard\pardeftab720
+
+\fs18 \cf0 \
+
+\fs36 m= 
+\fs18 (\
+\{\cf15 Pan2\cf0 .ar(\
+\pard\pardeftab720
+\cf15 Normalizer\cf0 .ar(\cf15 \
+RLPF\cf0 .ar(\
+\cf15 RLPF\cf0 .ar(\cf15 Mix.new\cf0 (\cf15 Gendy3\cf0 .ar(freq:[230, 419, 546, 789])),\
+\cf15 MouseX\cf0 .kr(10,10000,\cf16 'exponential'\cf0 ),0.05),\
+\cf15 MouseY\cf0 .kr(10,10000,\cf16 'exponential'\cf0 ),0.05)\
+,0.9)\
+,\cf15 Lag\cf0 .kr(\cf15 LFNoise0\cf0 .kr(1),0.5))\}.play\
+)\
+\
+\pard\pardeftab720
+
+\fs36 \cf0 m.free;
+\fs38 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720
+\cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720
+
+\f4\b \cf9 \cb10 ====== GENDY 1 , 2, 3\
+\
+\pard\pardeftab720
+
+\f2\b0\fs18 \cf0 \cb1 d= (\
+\{\cf17 Pan2\cf0 .ar(\cf17 Gendy3\cf0 .ar(1,2,freq:\cf17 Gendy2\cf0 .ar(maxfreq:\cf17 Gendy1\cf0 .kr(66,6,16.3, 0.7, 0.3, \cf17 MouseY\cf0 .kr(0.1,10), 1.0, 1.8, 5,5, 125,26),minfreq:24, knum:\cf17 MouseX\cf0 .kr(6.3,173),mul:150, add:200), durscale:0.01, ampscale:0.01, mul:0.1), 0.0)\}.play\
+)\
+\
+
+\fs36 d.free;
+\fs18 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720
+
+\f4\b\fs38 \cf9 \cb10 \
+=======\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural
+
+\f2\b0\fs18 \cf11 \cb1 ======= */\cf0 \
+ \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural
+
+\fs40 \cf0 i=
+\fs18  (\{ \cf12 var\cf0  freqs = #[40, 50, 60, 70];\
+		\
+		\cf12 Splay\cf0 .ar(\cf12 Saw\cf0 .ar(\cf12 SinOsc\cf0 .ar(\cf12 Saw\cf0 .ar(\cf12 SinOsc\cf0 .ar(freqs, 0.0, 1.0)) * freqs, 0.0, 1.0) * 100.0, 1.0));\}.play)		\
+
+\fs28 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural
+
+\fs38 \cf0 i.free;\
+\
+======= 
+\fs18 \
+\pard\pardeftab720
+
+\f5\fs32 \cf2 PHASOBASS RANDOM WALK\
+\
+Ndef(\\envAsOsc, \{ |baseFreq=300, lvlMod=1, timesMod=1, curvMod=0.1| \
+\'a0 \'a0 \'a0 \'a0 var lvls = [ \
+\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 0, \
+\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 LFDNoise1.kr(2.1*lvlMod), \
+\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 LFDNoise1.kr(lvlMod), \
+\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 LFDNoise3.kr(0.42*lvlMod), \
+\'a0 \'a0 \'a0 \'a0 ]; \
+\'a0 \'a0 \'a0 \'a0 var times = [ \
+\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 LFDNoise3.kr(1.76*timesMod), \
+\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 LFDNoise1.kr(timesMod), \
+\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 LFDNoise3.kr(0.42*timesMod), \
+\'a0 \'a0 \'a0 \'a0 ].linexp(-1,1, 0.2, 5); \
+\'a0 \'a0 \'a0 \'a0 EnvGen.ar( \
+\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 Env.new( \
+\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 lvls, \
+\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 times, \
+\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 LFNoise2.kr(0.15, curvMod * 15) \
+\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 ).circle, \
+\'a0 \'a0 \'a0 \'a0 timeScale: 1/baseFreq).dup \
+\}).play(vol: 0.25); 
+\f2\fs18 \cf0 \
+\
+\
+-------------=======================\
+
+\f5\fs32 \cf2 -------\
+DemandEnvGen\
+\
+\
+( \
+z = \{ |minFreq = 1500, maxFreq = 2500, speed = 0.05, amp = 0.1| \
+\'a0 \'a0 \'a0 \'a0 var n = 5; // number of nodes \
+\'a0 \'a0 \'a0 \'a0 DemandEnvGen.ar( \
+\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 Dswitch1( \{ Dbrown( -1, 1, speed ) * amp \}!n, Dseq( (..n-1), \'a0 \
+inf ) ), // levels \
+\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 Dswitch1( \{ \
+\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 Dbrown( 0, 1, speed ) * ((1/minFreq) - (1/maxFreq)) + (1/ \
+maxFreq) // times \
+\'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \'a0 \}!n, Dseq( (..n-1), inf ) ) ); \
+\'a0 \'a0 \'a0 \'a0 \}.play; \
+) \
+\
+z.set( \\speed, 0.6 ); // more noisy \
+z.set( \\minFreq, 1000 ); \
+z.set( \\maxFreq, 5000); \
+\
+\
+\
+=======\
+\
+\pard\pardeftab560
+
+\f2\fs38 \cf0 -----------GENDY!
+\fs18 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural
+\cf0 \
+ \
+\pard\pardeftab560
+\cf0 \
+
+\fs38 ------------Bass--UWAGA---
+\fs18 \
+\
+\pard\pardeftab720
+\cf13 //wandering bass/ powerline\
+\pard\pardeftab720
+
+\fs28 \cf0 n=
+\fs18  \{\cf14 Pan2\cf0 .ar(\cf14 Gendy1\cf0 .ar(1,1,1.0,1.0,30,50,0.3,0.05,5))\}.play;\
+\
+\pard\pardeftab720
+
+\fs30 \cf0 n.free;\
+\
+\
+\pard\pardeftab720
+
+\fs28 \cf0 n=
+\fs18  \{\cf14 Pan2\cf0 .ar(\cf14 Gendy1\cf0 .ar(1,1,1.0,1.0,20,80,0.3,0.05,5))\}.play;\
+\
+
+\fs28 m=
+\fs18  \{\cf14 Pan2\cf0 .ar(\cf14 Gendy1\cf0 .ar(1,1,1.0,1.0,20,90,0.3,0.02,8))\}.play;\
+\
+\
+\pard\pardeftab720
+
+\fs30 \cf0 m.free;\
+\pard\pardeftab720
+
+\fs18 \cf0 \
+\pard\pardeftab560
+
+\fs38 \cf0 ------------screem!-mouse---
+\fs18 \
+\pard\pardeftab720
+\cf0 \
+\pard\pardeftab720
+\cf13 //scream! - careful with your ears for this one!\
+\pard\pardeftab720
+\cf0 \
+\pard\pardeftab720
+
+\fs24 \cf0 m=
+\fs18  (\
+\{\
+\pard\pardeftab720
+\cf14 var\cf0  mx, my;\
+\
+mx= \cf14 MouseX\cf0 .kr(320,540);\
+my= \cf14 MouseY\cf0 .kr(0.0,1.0);\
+\
+\cf14 Pan2\cf0 .ar(\cf14 Gendy1\cf0 .ar(2,3,1,1,minfreq:mx, maxfreq:8*mx, ampscale:my, durscale:my, initCPs:7, mul:0.3), 0.0)\}.play\
+)\
+\
+\pard\pardeftab720
+
+\fs26 \cf0 m.free
+\fs18 ;\
+\
+\pard\pardeftab560
+
+\fs38 \cf0 ----noise Genry1--
+\fs18 \
+\pard\pardeftab720
+\cf0 \
+\pard\pardeftab720
+\cf13 UWAGA!!!//use SINUS to track any oscillator and take CP positions from it, use adparam and ddparam as the inputs to sample \
+\pard\pardeftab720
+\cf0 \
+\pard\pardeftab720
+
+\fs32 \cf0 o= 
+\fs18 \{\cf14 Pan2\cf0 .ar(\cf14 Gendy1\cf0 .ar(6,6,\cf14 LFPulse\cf0 .kr(100, 0, 0.4, 1.0), \cf14 SinOsc\cf0 .kr(30, 0, 0.5),mul:0.2), 0.0)\}.play;\
+\
+\
+\pard\pardeftab720
+
+\fs36 \cf0 o.free;
+\fs18 \
+\
+\pard\pardeftab560
+
+\fs38 \cf0 ----noise Genry1 mouse-UWAGAAAAAA-\
+
+\fs18 \
+\pard\pardeftab720
+\cf13 //try out near the corners especially\
+\pard\pardeftab720
+
+\fs26 \cf0 p=
+\fs18  \{\cf14 Pan2\cf0 .ar(\cf14 Gendy1\cf0 .ar(6,6,\cf14 LFPulse\cf0 .kr(\cf14 MouseX\cf0 .kr(0,200), 0, 0.4, 1.0), \cf14 SinOsc\cf0 .kr(\cf14 MouseY\cf0 .kr(0,200), 0, 0.5),mul:1.0), 0.0)\}.play;\
+\
+
+\fs26 p.free;
+\fs18 \
+\pard\pardeftab560
+\cf0 \
+
+\fs38 ----noise-Genry 1 wasp dosc wysoki-
+\fs18 \
+\
+\pard\pardeftab720
+\cf13 //wasp\
+\pard\pardeftab720
+
+\fs30 \cf0 q= 
+\fs18 \{\cf14 Pan2\cf0 .ar(\cf14 Gendy1\cf0 .ar(0, 0, \cf14 SinOsc\cf0 .kr(0.1, 0, 0.1, 0.9),1.0, 50,1000, 1,0.005, 12, 12, 0.8), 0.0)\}.play;\
+\
+
+\fs30 q.free;
+\fs18 \
+\
+\pard\pardeftab560
+
+\fs38 \cf0 ----noise Genry 1 with mouse--
+\fs18 \
+\pard\pardeftab720
+\cf0 \
+\pard\pardeftab720
+\cf13 //modulate distributions\
+//change of pitch as distributions change the duration structure and spectrum\
+\pard\pardeftab720
+
+\fs28 \cf0 r=
+\fs18  \{\cf14 Pan2\cf0 .ar(\cf14 Gendy1\cf0 .ar(\cf14 MouseX\cf0 .kr(0,7),\cf14 MouseY\cf0 .kr(0,7),mul:0.2), 0.0)\}.play;\
+\
+
+\fs28 r.free;
+\fs18 \
+\
+\
+\
+\pard\pardeftab720
+\cf13 //modulate num of CPs
+\fs38 \cf0 se Gendy MODULATE UWAGA
+\fs18 \cf13 \
+\pard\pardeftab720
+
+\fs26 \cf0 s= 
+\fs18 \{\cf14 Pan2\cf0 .ar(\cf14 Gendy1\cf0 .ar(knum:\cf14 MouseX\cf0 .kr(1,13),mul:0.8), 0.0)\}.play;\
+\
+\pard\pardeftab720
+
+\fs28 \cf0 s.free;\
+\
+----
+\fs18 \cf18 /used as an LFO	
+\fs36 \cf0 LFO sinus oscylacje
+\fs18 \cf18 \
+\pard\pardeftab720
+\cf0 \
+
+\fs36 e= 
+\fs18 (\
+\{\cf15 Pan2\cf0 .ar(\cf15 SinOsc\cf0 .ar(\cf15 Gendy2\cf0 .kr(2,1,\cf15 SinOsc\cf0 .kr(0.1,0,0.49,0.51),\cf15 SinOsc\cf0 .kr(0.13,0,0.49,0.51), 3.4,3.5, \cf15 SinOsc\cf0 .kr(0.17,0,0.49,0.51), \cf15 SinOsc\cf0 .kr(0.19,0,0.49,0.51),10,10,mul:50, add:350), 0, 0.3), 0.0)\}.play\
+)\
+\
+
+\fs36 e.free;
+\fs18 \
+	\
+\pard\pardeftab720
+\cf18 \
+\pard\pardeftab720
+
+\fs36 \cf0 Angry noise !
+\fs18 \cf18 //very angry wasp\
+
+\fs36 \cf0 f= 
+\fs18 \{\cf15 Pan2\cf0 .ar(\cf15 Gendy2\cf0 .ar(0, 0, \cf15 SinOsc\cf0 .kr(0.5, 0, 0.4, 2.9),1.5, 50,1000, 1,0.005, 15, 13, 0.5,0.9,0.9), 0.0)\}.play;\
+\
+
+\fs36 f.free;
+\fs18 \
+\
+\pard\pardeftab720
+
+\fs48 \cf0 Oscylacje 01!!!
+\fs36  
+\fs18 \cf18 //use SINUS to track any oscillator and take CP positions from it, use adparam and ddparam as the inputs to sample \
+\pard\pardeftab720
+\cf0 \
+
+\fs36 g= 
+\fs18 \{\cf15 Pan2\cf0 .ar(\cf15 Gendy2\cf0 .ar(6,6,\cf15 LFPulse\cf0 .kr(100, 0, 0.4, 1.0), \cf15 SinOsc\cf0 .kr(30, 0, 0.5),mul:1.8), 0.0)\}.play;\
+\
+\
+\
+=========\
+
+\fs36 noise concert ph ZAKLOCENIA  
+\fs32 \cf18 U
+\fs30 WAGA CONCRET PH
+\fs18 //concrete pH? \
+
+\fs36 \cf0 n= 
+\fs18 (\
+\{\cf15 Pan2\cf0 .ar(\
+\pard\pardeftab720
+\cf15 Mix.new\cf0 (\cf15 Gendy3\cf0 .ar(freq:([1,1.2,1.3,1.76,2.3]*\cf15 MouseX\cf0 .kr(3,17,\cf16 'exponential'\cf0 )),mul:0.8)))\}.play\
+)\
+\
+\pard\pardeftab720
+
+\fs36 \cf0 n.free;\
+\
+\
+======\
+
+\fs18 \
+
+\fs36 Glitchy wind
+\fs18 \cf18 //another glitchy moment\
+\cf0 \
+
+\fs36 u= 
+\fs18 (\
+\{\
+\pard\pardeftab720
+\cf15 var\cf0  n;\
+n=10;\
+\
+\cf15 Resonz\cf0 .ar(\cf15 \
+Mix.fill\cf0 (n,\{\cf15 \
+var\cf0  freq, numcps;\
+\
+freq= rrand(50,560.3);\
+numcps= rrand(2,20);\
+\cf15 Pan2\cf0 .ar(\cf15 Gendy3\cf0 .ar(6.rand,6.rand,1.0.rand,1.0.rand,freq, 1.0.rand, 1.0.rand, numcps, \cf15 SinOsc\cf0 .kr(exprand(0.02,0.2), 0, numcps/2, numcps/2), 0.5/(n.sqrt)), 1.0.rand2)\
+\})\
+,\cf15 MouseX\cf0 .kr(100,2000), \cf15 MouseY\cf0 .kr(0.01,1.0), 0.9)\
+;\
+\}.play\
+)\
+\
+\pard\pardeftab720
+
+\fs36 \cf0 u.free;
+\fs18 \
+\
+======\
+\pard\pardeftab560
+\cf11 // PV_Stoch example\cf0 \
+\
+\
+\cf11 // first evaluate the synthdef\cf0 \
+\
+(\
+\cf12 SynthDef\cf0 (\cf19 "pvstoch"\cf0 , \{ \cf12 arg\cf0  out=0,phaseIn = 0.0,specDec = 1.0,bpInterp = 10.0,range = 1.0,offset=0.0,dev=0.0,infr=150,amp=1.0;\
+	\cf12 var\cf0  in,in2,chain,chain2;\
+\
+	\cf11 //in = WhiteNoise.ar(0.8);\cf0 \
+	\cf11 //in2 = WhiteNoise.ar(0.8);\cf0 \
+	in = \cf12 Impulse\cf0 .ar(\cf12 LFNoise2\cf0 .kr(1.0,infr*0.6,infr)) * \cf12 LFNoise2\cf0 .ar(0.5, 0.5, 0.5);\
+	in2 = \cf12 Impulse\cf0 .ar(\cf12 LFNoise2\cf0 .kr(1.0,infr*0.6,infr)) * \cf12 LFNoise2\cf0 .ar(0.5, 0.5, 0.5);\
+	chain = \cf12 FFT\cf0 (\cf12 LocalBuf\cf0 (2048), in, 0.5, 1, winsize: 0);\
+	chain = \cf12 PV_Stoch\cf0 (chain,14,3.0,phaseIn,specDec,bpInterp,range,offset,dev);\
+		\
+	chain2 = \cf12 FFT\cf0 (\cf12 LocalBuf\cf0 (2048), in2, 0.5, 1, winsize: 0);\
+	chain2 = \cf12 PV_Stoch\cf0 (chain2,14,3.0,phaseIn,specDec,bpInterp,range,offset,dev);\
+		\cf12 Out\cf0 .ar(out, [\cf12 IFFT\cf0 (chain,1),\cf12 IFFT\cf0 (chain2,1)] * 2.0 * amp);					\
+\}).send(s);\
+)\
+\
+\
+\
+\
+\
+\
+\cf11 // gui (osx only) for testing parameters\cf0 \
+\cf11 // press "new synth" button\
+// careful, may be loud!!\
+\pard\pardeftab560
+\cf0 \
+\
+(\
+	\cf12 var\cf0  win, sl1,txt1,sl2,txt2,sl3,txt3,sl4,txt4,sl5,txt5,sl6,txt6,sl7,txt7,button,button2,synth,dic;\
+	win = \cf12 SCWindow\cf0 .new(\cf19 "PV_Stoch"\cf0 ,\cf12 Rect\cf0 (100, 100, 400, 280),\cf12 false\cf0 );\
+\
+	\
+	dic = \cf12 Dictionary\cf0 [ (\cf20 'range'\cf0  -> 1.0323065), (\cf20 'dev'\cf0  -> 24.032258065), (\cf20 'offset'\cf0  -> 0), (\cf20 'phaseIn'\cf0  -> 0.655914), (\cf20 'infr'\cf0  -> 21.6193586), \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab560\pardirnatural
+\cf0   (\cf20 'specDec'\cf0  -> 2.7257365), (\cf20 'amp'\cf0  -> 6.559139785) ];\
+\pard\pardeftab560
+\cf0 	\
+	sl1 = \cf12 SCSlider\cf0 (win, \cf12 Rect\cf0 (10, 10, 200, 20));\
+	txt1 = \cf12 SCStaticText\cf0 (win, \cf12 Rect\cf0 (220, 10, 200, 20));\
+	txt1.string = \cf19 "phase input"\cf0 ;\
+	sl1.value_([-1.0, 1.0, \cf20 'linear'\cf0 , 0.0000001, 0.0].asSpec.unmap(dic.at(\cf20 'phaseIn'\cf0 )));\
+	sl1.action = \{ \cf12 var\cf0  mapper = [-1.0, 1.0, \cf20 'linear'\cf0 , 0.0000001, 0.0].asSpec;\
+					synth.set(\cf19 "phaseIn"\cf0 , mapper.map(sl1.value)); dic.add(\cf20 'phaseIn'\cf0  -> mapper.map(sl1.value)); \};	\
+	\
+	sl2 = \cf12 SCSlider\cf0 (win, \cf12 Rect\cf0 (10, 40, 200, 20));\
+	txt2 = \cf12 SCStaticText\cf0 (win, \cf12 Rect\cf0 (220, 40, 200, 20));\
+	txt2.string = \cf19 "spectral envelope decay"\cf0 ;\
+	sl2.value_([1.0, 10.0, \cf20 'exp'\cf0 , 0.0000001, 1.1].asSpec.unmap(dic.at(\cf20 'specDec'\cf0 )));\
+	sl2.action = \{ \cf12 var\cf0  mapper = [1.0, 10.0, \cf20 'exp'\cf0 , 0.0000001, 1.1].asSpec;\
+					synth.set(\cf19 "specDec"\cf0 , mapper.map(sl2.value)); dic.add(\cf20 'specDec'\cf0  -> mapper.map(sl2.value)); \};\
+	\
+	sl3 = \cf12 SCSlider\cf0 (win, \cf12 Rect\cf0 (10, 70, 200, 20));\
+	txt3 = \cf12 SCStaticText\cf0 (win, \cf12 Rect\cf0 (220, 70, 200, 20));\
+	txt3.string = \cf19 "input impulse density"\cf0 ;\
+	sl3.value_([0.1, 3000.0, \cf20 'exp'\cf0 , 0.0000001, 10.0].asSpec.unmap(dic.at(\cf20 'infr'\cf0 )));\
+	sl3.action = \{ \cf12 var\cf0  mapper = [0.1, 3000.0, \cf20 'exp'\cf0 , 0.0000001, 10.0].asSpec;\
+					synth.set(\cf19 "infr"\cf0 , mapper.map(sl3.value)); dic.add(\cf20 'infr'\cf0  -> mapper.map(sl3.value)); \};\
+\
+	\
+	sl4 = \cf12 SCSlider\cf0 (win, \cf12 Rect\cf0 (10, 100, 200, 20));\
+	txt4 = \cf12 SCStaticText\cf0 (win, \cf12 Rect\cf0 (220, 100, 200, 20));\
+	txt4.string = \cf19 "spectral range"\cf0 ;\
+	sl4.value_([0.0001, 2.0, \cf20 'linear'\cf0 , 0.0000001, 1.0].asSpec.unmap(dic.at(\cf20 'range'\cf0 )));\
+	sl4.action = \{ \cf12 var\cf0  mapper = [0.0001, 2.0, \cf20 'linear'\cf0 , 0.0000001, 1.0].asSpec;\
+					synth.set(\cf19 "range"\cf0 , mapper.map(sl4.value)); dic.add(\cf20 'range'\cf0  -> mapper.map(sl4.value)); \};\
+	\
+	sl5 = \cf12 SCSlider\cf0 (win, \cf12 Rect\cf0 (10, 130, 200, 20));\
+	txt5 = \cf12 SCStaticText\cf0 (win, \cf12 Rect\cf0 (220, 130, 200, 20));\
+	txt5.string = \cf19 "spectral offset"\cf0 ;\
+	sl5.value_([1.0, 8000.0, \cf20 'exp'\cf0 , 1, 0.0].asSpec.unmap(dic.at(\cf20 'offset'\cf0 )));\
+	sl5.action = \{ \cf12 var\cf0  mapper = [1.0, 8000.0, \cf20 'exp'\cf0 , 1, 0.0].asSpec;\
+					synth.set(\cf19 "offset"\cf0 , mapper.map(sl5.value)); dic.add(\cf20 'offset'\cf0  -> mapper.map(sl5.value)); \};\
+\
+	\
+	sl6 = \cf12 SCSlider\cf0 (win, \cf12 Rect\cf0 (10, 160, 200, 20));\
+	txt6 = \cf12 SCStaticText\cf0 (win, \cf12 Rect\cf0 (220, 160, 200, 20));\
+	txt6.string = \cf19 "breakpoint deviation"\cf0 ;			\
+	sl6.value_([0.0, 30.0, \cf20 'linear'\cf0 , 0.000000001, 0.0].asSpec.unmap(dic.at(\cf20 'dev'\cf0 )));\
+	sl6.action = \{ \cf12 var\cf0  mapper = [0.0, 30.0, \cf20 'linear'\cf0 , 0.000000001, 0.0].asSpec;\
+					synth.set(\cf19 "dev"\cf0 , mapper.map(sl6.value)); dic.add(\cf20 'dev'\cf0  -> mapper.map(sl6.value)); \};\
+					\
+	\
+	sl7 = \cf12 SCSlider\cf0 (win, \cf12 Rect\cf0 (10, 190, 200, 20));\
+	txt7 = \cf12 SCStaticText\cf0 (win, \cf12 Rect\cf0 (220, 190, 200, 20));\
+	txt7.string = \cf19 "amp"\cf0 ;			\
+	sl7.value_([0.0, 10.0, \cf20 'lin'\cf0 , 0.000000001, 1.0].asSpec.unmap(dic.at(\cf20 'amp'\cf0 )));\
+	sl7.action = \{ \cf12 var\cf0  mapper = [0.0, 10.0, \cf20 'lin'\cf0 , 0.000000001, 1.0].asSpec;\
+					synth.set(\cf19 "amp"\cf0 , mapper.map(sl7.value)); dic.add(\cf20 'amp'\cf0  -> mapper.map(sl7.value)); \};\
+\
+	\
+	\
+	button = \cf12 SCButton\cf0 (win, \cf12 Rect\cf0 (10,220,90,30))\
+		.states_([\
+			[\cf19 "New synth"\cf0 , \cf12 Color\cf0 .black, \cf12 Color\cf0 .gray]\
+		])\
+		.action_(\{ \
+			synth.free;\
+			synth = \cf12 Synth\cf0 .new(\cf20 \\pvstoch\cf0 , [\cf20 \\phaseIn\cf0 , dic.at(\cf20 'phaseIn'\cf0 ), \cf20 \\specDec\cf0 , dic.at(\cf20 'specDec'\cf0 ), \cf20 \\infr\cf0 , dic.at(\cf20 'infr'\cf0 ),\
+								  \cf20 \\range\cf0 , dic.at(\cf20 'range'\cf0 ), \cf20 \\offset\cf0 , dic.at(\cf20 'offset'\cf0 ), \cf20 \\dev\cf0 , dic.at(\cf20 'dev'\cf0 ), \cf20 \\amp\cf0 , dic.at(\cf20 'amp'\cf0 )])\
+			\});\
+\
+	button2 = \cf12 SCButton\cf0 (win, \cf12 Rect\cf0 (120,220,90,30))\
+		.states_([\
+			[\cf19 "Print states"\cf0 , \cf12 Color\cf0 .black, \cf12 Color\cf0 .gray]\
+		])\
+		.action_(\{ \
+			dic.postln;\
+		\});\
+		\
+	win.front;\
+)\
+}
