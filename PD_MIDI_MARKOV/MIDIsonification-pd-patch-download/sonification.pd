@@ -1,0 +1,1252 @@
+#N canvas 355 121 647 625 10;
+#X obj 3 -19 cnv 15 600 600 empty empty www.algorithmiccomposer.com
+20 12 0 14 -261234 -66577 0;
+#N canvas 0 34 675 630 data 0;
+#X obj 8 25 cnv 15 650 600 empty empty www.algorithmiccomposer.com
+20 12 0 14 -261234 -66577 0;
+#X text 132 85 UK Weather Monthly Stats;
+#X text 420 184 rainfall mm;
+#X text 353 91 average max. temperature;
+#X obj 36 70 loadbang;
+#X obj 22 290 coll data;
+#C restore;
+#X obj 36 94 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X text 401 139 sunshine hours;
+#X msg 134 106 nstore 1 temp 6.6 6.9 9.3 11.7 15.4 18.1 20.6 17.5 13.6
+9.5 7.4 7.1;
+#X msg 134 153 nstore 2 sunshine 50.5 67.7 102.5 145.2 189.9 179.4
+192.8 184.1 135 101.3 65.2 43.9;
+#X msg 134 200 nstore 3 rain 84.2 60.1 66.5 56.8 55.9 62.9 54.1 66.7
+73.3 83.6 83.5 90.4;
+#X msg 134 249 nstore 4 wind 8.3 10.4 7.3 8 11.5 8.3 7.1 7.5 11 10.7
+10.5 13.1;
+#X text 427 234 windspeed;
+#X text 192 6 Sonification - Here we've loaded up some sample weather
+data;
+#X obj 162 312 pddp/pddplink http://www.algorithmiccomposer.com -text
+http://www.algorithmiccomposer.com;
+#X connect 4 0 6 0;
+#X connect 6 0 8 0;
+#X connect 6 0 9 0;
+#X connect 6 0 10 0;
+#X connect 6 0 11 0;
+#X connect 8 0 5 0;
+#X connect 9 0 5 0;
+#X connect 10 0 5 0;
+#X connect 11 0 5 0;
+#X restore 305 86 pd data;
+#N canvas 0 22 733 703 scales 0;
+#X obj 17 39 cnv 15 600 600 empty empty www.algorithmiccomposer.com
+20 12 0 14 -261234 -66577 0;
+#X text 149 12 Scales are defined here;
+#X obj 119 194 table major-scale;
+#X obj 118 219 table harmonic-minor;
+#X obj 130 80 loadbang;
+#X obj 118 241 table melodic-minor;
+#X msg 130 104 \; major-scale 0 0 2 4 5 7 9 11 \; harmonic-minor 0
+0 2 3 5 7 8 11 \; melodic-minor 0 0 2 3 5 7 9 11 \; natural-minor 0
+0 2 3 5 7 9 10 \;;
+#X obj 118 264 table natural-minor;
+#X obj 232 382 pddp/pddplink http://www.algorithmiccomposer.com -text
+http://www.algorithmiccomposer.com;
+#X connect 4 0 6 0;
+#X restore 306 59 pd scales;
+#N canvas 0 35 815 608 pitch-example 0;
+#X obj 3 -12 cnv 15 800 600 empty empty www.algorithmiccomposer.com
+20 12 0 14 -261234 -66577 0;
+#X floatatom 188 238 8 0 0 0 - - -;
+#X floatatom 245 238 5 0 0 0 - - -;
+#X obj 245 207 zl len;
+#X obj 188 207 maximum;
+#X obj 130 209 minimum;
+#X floatatom 130 239 8 0 0 0 - - -;
+#X obj 130 172 coll data;
+#C restore;
+#X floatatom 103 140 5 0 0 0 - - -;
+#X obj 34 181 coll data;
+#C restore;
+#X floatatom 33 103 5 0 0 0 - - -;
+#X floatatom 34 215 10 0 0 0 - - -;
+#X obj 33 30 metro 125;
+#X obj 33 10 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X obj 33 136 pack;
+#X msg 33 159 nth \$2 \$1;
+#X floatatom 55 293 5 0 0 0 - - -;
+#X obj 33 55 counter 1 12;
+#X obj 103 85 loadbang;
+#X msg 103 117 1;
+#X obj 55 325 + 60;
+#X text 359 384 www.algorithmiccomposer.com;
+#X obj 55 349 int;
+#X obj 55 417 noteout;
+#X obj 55 394 makenote 100 1000;
+#X floatatom 55 372 5 0 0 0 - - -;
+#X msg 311 240 0;
+#X msg 357 239 15;
+#X obj 55 268 expr $f4 + ($f1 - $f2) * ($f5 - $f4) / ($f3 - $f2 );
+#X text 412 221 These 5 numbers are;
+#X text 444 252 input min;
+#X text 444 267 input max;
+#X text 444 282 output min;
+#X text 444 297 output max;
+#X text 444 237 current value;
+#X obj 325 211 loadbang;
+#X text 126 116 change this number to change;
+#X text 135 133 the data you're working with;
+#X connect 1 0 28 2;
+#X connect 2 0 17 4;
+#X connect 3 0 2 0;
+#X connect 4 0 1 0;
+#X connect 5 0 6 0;
+#X connect 6 0 28 1;
+#X connect 7 0 5 0;
+#X connect 7 0 4 0;
+#X connect 7 0 3 0;
+#X connect 8 0 7 0;
+#X connect 8 0 14 1;
+#X connect 9 0 11 0;
+#X connect 10 0 14 0;
+#X connect 11 0 28 0;
+#X connect 12 0 17 0;
+#X connect 13 0 12 0;
+#X connect 14 0 15 0;
+#X connect 15 0 9 0;
+#X connect 16 0 20 0;
+#X connect 17 0 10 0;
+#X connect 18 0 19 0;
+#X connect 19 0 8 0;
+#X connect 20 0 22 0;
+#X connect 22 0 25 0;
+#X connect 24 0 23 0;
+#X connect 24 1 23 1;
+#X connect 25 0 24 0;
+#X connect 26 0 28 3;
+#X connect 27 0 28 4;
+#X connect 28 0 16 0;
+#X connect 35 0 26 0;
+#X connect 35 0 27 0;
+#X restore 16 55 pd pitch-example;
+#N canvas 0 22 688 677 velocity-example 0;
+#X obj 3 32 cnv 15 600 600 empty empty www.algorithmiccomposer.com
+20 12 0 14 -261234 -66577 0;
+#N canvas 727 53 638 615 normalise 0;
+#X obj 15 -25 cnv 15 600 600 empty empty www.algorithmiccomposer.com
+20 12 0 14 -261234 -66577 0;
+#X obj 181 34 inlet;
+#X obj 182 271 outlet;
+#X floatatom 181 93 5 0 0 0 - - -;
+#X floatatom 181 216 5 0 0 0 - - -;
+#X obj 181 185 expr $f4 + ($f1 - $f2) * ($f5 - $f4) / ($f3 - $f2 )
+;
+#X text 327 81 These 5 numbers are;
+#X text 353 101 input min;
+#X text 354 114 input max;
+#X text 355 131 output min;
+#X text 359 150 output max;
+#X text 33 116 change these numbers->;
+#X text 33 6 Change the numbers marked below - put in your lowest and
+highest input numbers and lowest and highest output;
+#X msg 361 51 \$1 3.2 3.44 500 1500;
+#X obj 193 117 inlet;
+#X obj 230 118 inlet;
+#X text 277 364 www.algorithmiccomposer.com;
+#X obj 182 147 pack 0 0 0 40 127;
+#X connect 1 0 3 0;
+#X connect 3 0 17 0;
+#X connect 4 0 2 0;
+#X connect 5 0 4 0;
+#X connect 14 0 17 1;
+#X connect 15 0 17 2;
+#X connect 17 0 5 0;
+#X restore 177 349 pd normalise;
+#X floatatom 270 299 8 0 0 0 - - -;
+#X floatatom 327 299 5 0 0 0 - - -;
+#X obj 327 268 zl len;
+#X obj 270 268 maximum;
+#X obj 212 270 minimum;
+#X floatatom 212 300 8 0 0 0 - - -;
+#X obj 212 233 coll data;
+#C restore;
+#X floatatom 212 207 5 0 0 0 - - -;
+#X obj 116 244 coll data;
+#C restore;
+#X floatatom 115 166 5 0 0 0 - - -;
+#X floatatom 116 278 10 0 0 0 - - -;
+#X obj 54 83 metro 125;
+#X obj 54 61 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X obj 115 199 pack;
+#X msg 115 222 nth \$2 \$1;
+#X floatatom 177 385 5 0 0 0 - - -;
+#X obj 54 113 counter 1 12;
+#X obj 301 155 loadbang;
+#X msg 301 177 1;
+#X obj 62 562 noteout;
+#X obj 46 457 int;
+#X floatatom 46 480 5 0 0 0 - - -;
+#X obj 46 433 + 0;
+#X msg 46 399 60;
+#X obj 62 532 makenote 100 500;
+#X obj 339 473 pddp/pddplink http://www.algorithmiccomposer.com -text
+http://www.algorithmiccomposer.com;
+#X connect 1 0 17 0;
+#X connect 2 0 1 2;
+#X connect 4 0 3 0;
+#X connect 5 0 2 0;
+#X connect 6 0 7 0;
+#X connect 7 0 1 1;
+#X connect 8 0 6 0;
+#X connect 8 0 5 0;
+#X connect 8 0 4 0;
+#X connect 9 0 8 0;
+#X connect 9 0 15 1;
+#X connect 10 0 12 0;
+#X connect 11 0 15 0;
+#X connect 12 0 1 0;
+#X connect 13 0 18 0;
+#X connect 14 0 13 0;
+#X connect 15 0 16 0;
+#X connect 16 0 10 0;
+#X connect 17 0 26 1;
+#X connect 18 0 11 0;
+#X connect 18 0 25 0;
+#X connect 19 0 20 0;
+#X connect 20 0 9 0;
+#X connect 22 0 23 0;
+#X connect 23 0 26 0;
+#X connect 24 0 22 0;
+#X connect 25 0 24 0;
+#X connect 26 0 21 0;
+#X connect 26 1 21 1;
+#X restore 11 135 pd velocity-example;
+#N canvas 700 41 706 657 density-example 0;
+#X obj 21 33 cnv 15 600 600 empty empty www.algorithmiccomposer.com
+20 12 0 14 -261234 -66577 0;
+#X floatatom 209 294 8 0 0 0 - - -;
+#X floatatom 266 294 5 0 0 0 - - -;
+#X obj 266 263 zl len;
+#X obj 209 263 maximum;
+#X obj 151 265 minimum;
+#X floatatom 151 295 8 0 0 0 - - -;
+#X obj 151 228 coll data;
+#C restore;
+#X floatatom 151 202 5 0 0 0 - - -;
+#X obj 55 239 coll data;
+#C restore;
+#X floatatom 54 161 5 0 0 0 - - -;
+#X floatatom 55 273 10 0 0 0 - - -;
+#X obj 54 61 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X obj 54 194 pack;
+#X msg 54 217 nth \$2 \$1;
+#X floatatom 116 379 5 0 0 0 - - -;
+#X obj 54 113 counter 1 12;
+#X obj 240 170 loadbang;
+#X msg 240 202 1;
+#N canvas 727 53 638 615 normalise 0;
+#X obj 15 -25 cnv 15 600 600 empty empty www.algorithmiccomposer.com
+20 12 0 14 -261234 -66577 0;
+#X obj 181 34 inlet;
+#X obj 182 271 outlet;
+#X floatatom 181 93 5 0 0 0 - - -;
+#X floatatom 181 216 5 0 0 0 - - -;
+#X obj 181 185 expr $f4 + ($f1 - $f2) * ($f5 - $f4) / ($f3 - $f2 )
+;
+#X text 327 81 These 5 numbers are;
+#X text 353 101 input min;
+#X text 354 114 input max;
+#X text 355 131 output min;
+#X text 359 150 output max;
+#X text 33 116 change these numbers->;
+#X text 33 6 Change the numbers marked below - put in your lowest and
+highest input numbers and lowest and highest output;
+#X msg 361 51 \$1 3.2 3.44 500 1500;
+#X obj 193 117 inlet;
+#X obj 230 118 inlet;
+#X text 277 364 www.algorithmiccomposer.com;
+#X obj 182 147 pack 0 0 0 50 99;
+#X connect 1 0 3 0;
+#X connect 3 0 17 0;
+#X connect 4 0 2 0;
+#X connect 5 0 4 0;
+#X connect 14 0 17 1;
+#X connect 15 0 17 2;
+#X connect 17 0 5 0;
+#X restore 115 343 pd normalise;
+#X obj 50 395 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 69 605 noteout;
+#X obj 50 502 >;
+#X obj 50 446 random 100;
+#X obj 50 527 select 1;
+#X msg 50 551 60;
+#X floatatom 117 477 5 0 0 0 - - -;
+#X obj 69 580 makenote 100 500;
+#X obj 54 83 metro 2000;
+#X obj 222 372 pddp/pddplink http://www.algorithmiccomposer.com -text
+http://www.algorithmiccomposer.com;
+#X obj 50 422 metro 50;
+#X text 206 69 An example mapping data to probability of a note being
+triggered;
+#X connect 1 0 19 2;
+#X connect 3 0 2 0;
+#X connect 4 0 1 0;
+#X connect 5 0 6 0;
+#X connect 6 0 19 1;
+#X connect 7 0 5 0;
+#X connect 7 0 4 0;
+#X connect 7 0 3 0;
+#X connect 8 0 7 0;
+#X connect 8 0 13 1;
+#X connect 9 0 11 0;
+#X connect 10 0 13 0;
+#X connect 11 0 19 0;
+#X connect 12 0 28 0;
+#X connect 13 0 14 0;
+#X connect 14 0 9 0;
+#X connect 15 0 26 0;
+#X connect 16 0 10 0;
+#X connect 17 0 18 0;
+#X connect 18 0 8 0;
+#X connect 19 0 15 0;
+#X connect 20 0 30 0;
+#X connect 22 0 24 0;
+#X connect 23 0 22 0;
+#X connect 24 0 25 0;
+#X connect 25 0 27 0;
+#X connect 26 0 22 1;
+#X connect 27 0 21 0;
+#X connect 27 1 21 1;
+#X connect 28 0 16 0;
+#X connect 30 0 23 0;
+#X restore 11 203 pd density-example;
+#N canvas 0 37 631 626 pitch-scale-example 0;
+#X obj 3 2 cnv 15 600 600 empty empty www.algorithmiccomposer.com 20
+12 0 14 -261234 -66577 0;
+#X floatatom 187 227 8 0 0 0 - - -;
+#X floatatom 244 227 5 0 0 0 - - -;
+#X obj 244 196 zl len;
+#X obj 187 196 maximum;
+#X obj 129 198 minimum;
+#X floatatom 129 228 8 0 0 0 - - -;
+#X obj 129 161 coll data;
+#C restore;
+#X floatatom 129 135 5 0 0 0 - - -;
+#X obj 33 172 coll data;
+#C restore;
+#X floatatom 32 94 5 0 0 0 - - -;
+#X floatatom 33 206 10 0 0 0 - - -;
+#X obj 32 48 metro 125;
+#X obj 32 26 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X obj 32 127 pack;
+#X msg 32 150 nth \$2 \$1;
+#X obj 32 73 counter 1 12;
+#X obj 218 103 loadbang;
+#X msg 218 135 1;
+#X obj 54 304 + 60;
+#X obj 54 328 int;
+#X obj 54 408 noteout;
+#X obj 54 378 makenote 100 1000;
+#X floatatom 54 356 5 0 0 0 - - -;
+#X obj 54 281 tabread major-scale;
+#X obj 54 253 expr $f4 + ($f1 - $f2) * ($f5 - $f4) / ($f3 - $f2 );
+#X obj 312 195 loadbang;
+#X msg 285 226 0;
+#X text 401 232 These 5 numbers are;
+#X text 433 263 input min;
+#X text 433 278 input max;
+#X text 433 293 output min;
+#X text 433 308 output max;
+#X text 433 248 current value;
+#X msg 329 226 6;
+#X obj 356 387 pddp/pddplink http://www.algorithmiccomposer.com -text
+http://www.algorithmiccomposer.com;
+#X connect 1 0 25 2;
+#X connect 3 0 2 0;
+#X connect 4 0 1 0;
+#X connect 5 0 6 0;
+#X connect 6 0 25 1;
+#X connect 7 0 5 0;
+#X connect 7 0 4 0;
+#X connect 7 0 3 0;
+#X connect 8 0 7 0;
+#X connect 8 0 14 1;
+#X connect 9 0 11 0;
+#X connect 10 0 14 0;
+#X connect 11 0 25 0;
+#X connect 12 0 16 0;
+#X connect 13 0 12 0;
+#X connect 14 0 15 0;
+#X connect 15 0 9 0;
+#X connect 16 0 10 0;
+#X connect 17 0 18 0;
+#X connect 18 0 8 0;
+#X connect 19 0 20 0;
+#X connect 20 0 23 0;
+#X connect 22 0 21 0;
+#X connect 22 1 21 1;
+#X connect 23 0 22 0;
+#X connect 24 0 19 0;
+#X connect 25 0 24 0;
+#X connect 26 0 27 0;
+#X connect 26 0 34 0;
+#X connect 27 0 25 3;
+#X connect 34 0 25 4;
+#X restore 15 79 pd pitch-scale-example;
+#N canvas 0 35 808 612 pitch-scale-octaves-example 0;
+#X obj 2 -11 cnv 15 800 600 empty empty www.algorithmiccomposer.com
+20 12 0 14 -261234 -66577 0;
+#X floatatom 186 175 8 0 0 0 - - -;
+#X obj 243 150 zl len;
+#X obj 186 150 maximum;
+#X obj 128 152 minimum;
+#X floatatom 128 176 8 0 0 0 - - -;
+#X obj 128 118 coll data;
+#C restore;
+#X floatatom 128 96 5 0 0 0 - - -;
+#X obj 32 139 coll data;
+#C restore;
+#X floatatom 31 72 5 0 0 0 - - -;
+#X floatatom 32 160 10 0 0 0 - - -;
+#X obj 31 27 metro 125;
+#X obj 31 9 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X obj 31 94 pack;
+#X msg 31 117 nth \$2 \$1;
+#X obj 128 52 loadbang;
+#X msg 128 74 1;
+#X obj 65 428 noteout;
+#X obj 65 404 makenote 100 1000;
+#X floatatom 65 383 5 0 0 0 - - -;
+#X obj 65 266 tabread major-scale;
+#X obj 217 280 * 12;
+#X floatatom 65 242 5 0 0 0 - - -;
+#X obj 65 337 +;
+#X floatatom 217 241 5 0 0 0 - - -;
+#X msg 329 176 0;
+#X msg 367 176 20;
+#X obj 344 151 loadbang;
+#X obj 64 199 expr $f4 + ($f1 - $f2) * ($f5 - $f4) / ($f3 - $f2 );
+#X text 420 170 These 5 numbers are;
+#X text 452 201 input min;
+#X text 452 216 input max;
+#X text 452 231 output min;
+#X text 452 246 output max;
+#X text 452 186 current value;
+#X obj 217 260 int;
+#X obj 65 220 % 7;
+#X obj 217 221 / 7;
+#X obj 31 48 counter 0 12;
+#X obj 65 359 + 60;
+#X obj 65 315 buddy;
+#X text 266 288 give the octave;
+#X text 112 340 add scale note and octave together;
+#X floatatom 294 29 5 0 0 0 - - -;
+#X obj 399 430 pddp/pddplink http://www.algorithmiccomposer.com -text
+http://www.algorithmiccomposer.com;
+#X connect 1 0 28 2;
+#X connect 2 0 43 0;
+#X connect 3 0 1 0;
+#X connect 4 0 5 0;
+#X connect 5 0 28 1;
+#X connect 6 0 4 0;
+#X connect 6 0 3 0;
+#X connect 6 0 2 0;
+#X connect 7 0 6 0;
+#X connect 7 0 13 1;
+#X connect 8 0 10 0;
+#X connect 9 0 13 0;
+#X connect 10 0 28 0;
+#X connect 11 0 38 0;
+#X connect 12 0 11 0;
+#X connect 13 0 14 0;
+#X connect 14 0 8 0;
+#X connect 15 0 16 0;
+#X connect 16 0 7 0;
+#X connect 18 0 17 0;
+#X connect 18 1 17 1;
+#X connect 19 0 18 0;
+#X connect 20 0 40 0;
+#X connect 21 0 40 1;
+#X connect 22 0 20 0;
+#X connect 23 0 39 0;
+#X connect 24 0 35 0;
+#X connect 25 0 28 3;
+#X connect 26 0 28 4;
+#X connect 27 0 25 0;
+#X connect 27 0 26 0;
+#X connect 28 0 36 0;
+#X connect 28 0 37 0;
+#X connect 35 0 21 0;
+#X connect 36 0 22 0;
+#X connect 37 0 24 0;
+#X connect 38 0 9 0;
+#X connect 39 0 19 0;
+#X connect 40 0 23 0;
+#X connect 40 1 23 1;
+#X connect 43 0 38 4;
+#X restore 12 107 pd pitch-scale-octaves-example;
+#N canvas 90 71 696 647 wind 0;
+#X obj 25 29 cnv 15 600 600 empty empty www.algorithmiccomposer.com
+20 12 0 14 -261234 -66577 0;
+#X floatatom 209 294 8 0 0 0 - - -;
+#X floatatom 351 100 5 0 0 0 - - -;
+#X obj 266 263 zl len;
+#X obj 209 263 maximum;
+#X obj 151 265 minimum;
+#X floatatom 151 295 8 0 0 0 - - -;
+#X obj 151 228 coll data;
+#C restore;
+#X floatatom 151 202 5 0 0 0 - - -;
+#X obj 55 239 coll data;
+#C restore;
+#X floatatom 54 161 5 0 0 0 - - -;
+#X floatatom 55 273 10 0 0 0 - - -;
+#X obj 54 61 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X obj 54 194 pack;
+#X msg 54 217 nth \$2 \$1;
+#X floatatom 116 379 5 0 0 0 - - -;
+#X obj 54 113 counter 1 12;
+#X obj 151 150 loadbang;
+#X obj 71 438 noise~;
+#X obj 68 524 dac~;
+#X obj 71 464 bp~ 200 50;
+#X msg 116 408 \$1 1000;
+#X obj 54 83 metro 1000;
+#X msg 151 176 4;
+#X obj 116 344 expr $f4 + ($f1 - $f2) * ($f5 - $f4) / ($f3 - $f2 )
+;
+#X obj 343 263 loadbang;
+#X obj 116 439 line;
+#X obj 137 50 r voice4-on;
+#X obj 71 497 *~;
+#X obj 119 487 r wind-vol;
+#X msg 343 302 200;
+#X msg 420 301 1200;
+#X obj 238 51 r bpm;
+#X floatatom 238 75 5 0 0 0 - - -;
+#X obj 272 422 pddp/pddplink http://www.algorithmiccomposer.com -text
+http://www.algorithmiccomposer.com;
+#X connect 1 0 24 2;
+#X connect 2 0 16 4;
+#X connect 3 0 2 0;
+#X connect 4 0 1 0;
+#X connect 5 0 6 0;
+#X connect 6 0 24 1;
+#X connect 7 0 5 0;
+#X connect 7 0 4 0;
+#X connect 7 0 3 0;
+#X connect 8 0 7 0;
+#X connect 8 0 13 1;
+#X connect 9 0 11 0;
+#X connect 10 0 13 0;
+#X connect 11 0 24 0;
+#X connect 12 0 22 0;
+#X connect 13 0 14 0;
+#X connect 14 0 9 0;
+#X connect 15 0 21 0;
+#X connect 16 0 10 0;
+#X connect 17 0 23 0;
+#X connect 18 0 20 0;
+#X connect 20 0 28 0;
+#X connect 21 0 26 0;
+#X connect 22 0 16 0;
+#X connect 23 0 8 0;
+#X connect 24 0 15 0;
+#X connect 25 0 30 0;
+#X connect 25 0 31 0;
+#X connect 26 0 20 1;
+#X connect 27 0 12 0;
+#X connect 28 0 19 0;
+#X connect 28 0 19 1;
+#X connect 29 0 28 1;
+#X connect 30 0 24 3;
+#X connect 31 0 24 4;
+#X connect 32 0 33 0;
+#X connect 33 0 22 1;
+#X restore 22 503 pd wind;
+#N canvas 0 22 733 703 rhythm 0;
+#X obj 17 39 cnv 15 600 600 empty empty www.algorithmiccomposer.com
+20 12 0 14 -261234 -66577 0;
+#X obj 124 79 loadbang;
+#X obj 116 219 table rhythm-values-triplets;
+#X msg 128 104 \; rhythm-values-16th 0 125 250 375 500 625 750 875
+\;;
+#X obj 116 190 table rhythm-values-16th;
+#X connect 1 0 3 0;
+#X restore 304 118 pd rhythm;
+#N canvas 0 22 751 665 rhythm-metric-mapping 0;
+#X obj 31 22 cnv 15 600 600 empty empty www.algorithmiccomposer.com
+20 12 0 14 -261234 -66577 0;
+#X floatatom 387 305 8 0 0 0 - - -;
+#X floatatom 444 305 5 0 0 0 - - -;
+#X obj 444 274 zl len;
+#X obj 387 274 maximum;
+#X obj 329 276 minimum;
+#X floatatom 329 306 8 0 0 0 - - -;
+#X obj 329 239 coll data;
+#C restore;
+#X floatatom 329 213 5 0 0 0 - - -;
+#X obj 233 250 coll data;
+#C restore;
+#X floatatom 232 172 5 0 0 0 - - -;
+#X floatatom 233 284 10 0 0 0 - - -;
+#X text 273 175 <-change this number;
+#X obj 54 83 metro 125;
+#X obj 54 61 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X obj 232 205 pack;
+#X msg 232 228 nth \$2 \$1;
+#X floatatom 70 446 5 0 0 0 - - -;
+#X obj 54 113 counter 1 12;
+#X obj 418 181 loadbang;
+#X msg 419 204 1;
+#X obj 70 505 makenote;
+#X obj 70 535 noteout;
+#N canvas 727 53 638 615 normalise 0;
+#X obj 15 -25 cnv 15 600 600 empty empty www.algorithmiccomposer.com
+20 12 0 14 -261234 -66577 0;
+#X obj 181 34 inlet;
+#X obj 182 271 outlet;
+#X floatatom 181 93 5 0 0 0 - - -;
+#X floatatom 181 216 5 0 0 0 - - -;
+#X obj 181 185 expr $f4 + ($f1 - $f2) * ($f5 - $f4) / ($f3 - $f2 )
+;
+#X text 327 81 These 5 numbers are;
+#X text 353 101 input min;
+#X text 354 114 input max;
+#X text 355 131 output min;
+#X text 359 150 output max;
+#X text 33 116 change these numbers->;
+#X text 33 6 Change the numbers marked below - put in your lowest and
+highest input numbers and lowest and highest output;
+#X msg 361 51 \$1 3.2 3.44 500 1500;
+#X obj 193 117 inlet;
+#X obj 230 118 inlet;
+#X text 277 364 www.algorithmiccomposer.com;
+#X obj 182 147 pack 0 0 0 1 6;
+#X connect 1 0 3 0;
+#X connect 3 0 17 0;
+#X connect 4 0 2 0;
+#X connect 5 0 4 0;
+#X connect 14 0 17 1;
+#X connect 15 0 17 2;
+#X connect 17 0 5 0;
+#X restore 296 353 pd normalise;
+#X text 391 396 then remapped to metric values;
+#X floatatom 298 383 5 0 0 0 - - -;
+#X floatatom 291 431 5 0 0 0 - - -;
+#X obj 291 411 tabread rhythm-values-16th;
+#X msg 71 416 60;
+#X obj 70 478 + 0;
+#X obj 293 453 s rhythm;
+#X obj 104 56 r rhythm;
+#X obj 355 521 pddp/pddplink http://www.algorithmiccomposer.com -text
+http://www.algorithmiccomposer.com;
+#X text 354 456 send to metro;
+#X connect 1 0 23 2;
+#X connect 3 0 2 0;
+#X connect 4 0 1 0;
+#X connect 5 0 6 0;
+#X connect 6 0 23 1;
+#X connect 7 0 5 0;
+#X connect 7 0 4 0;
+#X connect 7 0 3 0;
+#X connect 8 0 7 0;
+#X connect 8 0 15 1;
+#X connect 9 0 11 0;
+#X connect 10 0 15 0;
+#X connect 11 0 23 0;
+#X connect 13 0 18 0;
+#X connect 14 0 13 0;
+#X connect 15 0 16 0;
+#X connect 16 0 9 0;
+#X connect 17 0 29 0;
+#X connect 18 0 10 0;
+#X connect 18 0 28 0;
+#X connect 19 0 20 0;
+#X connect 20 0 8 0;
+#X connect 21 0 22 0;
+#X connect 21 1 22 1;
+#X connect 23 0 25 0;
+#X connect 25 0 27 0;
+#X connect 26 0 30 0;
+#X connect 27 0 26 0;
+#X connect 28 0 17 0;
+#X connect 29 0 21 0;
+#X connect 31 0 13 1;
+#X restore 11 160 pd rhythm-metric-mapping;
+#N canvas 0 28 1012 747 score 0;
+#X obj -129 -72 cnv 15 1000 730 empty empty www.algorithmiccomposer.com
+20 12 0 14 -261234 -66577 0;
+#X obj -20 -12 metro 1000;
+#X obj -20 -33 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 89 -51 r counter-onOff;
+#X obj -20 14 counter;
+#X obj 89 -28 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X floatatom -20 36 5 0 0 0 - - -;
+#X obj 638 -59 r tempo;
+#X floatatom 683 52 5 0 0 0 - - -;
+#X floatatom 684 -9 5 0 0 0 - - -;
+#X obj 686 19 expr 60000 / $f1;
+#X obj 683 79 s bpm;
+#X text 673 -44 BPM to ms converter;
+#X msg 639 102 \; voice1-on 0 \; voice2-on 0 \; voice3-on 0 \; voice4-on
+0 \; v1-pitch-min 2 \; v2-pitch-min 4 \; v3-pitch-min 0 \; v1-pitch-range
+8 \; v2-pitch-range 4 \; v3-pitch-range 15 \; v1-base-pitch 60 \; v2-base-pitch
+72 \; v3-base-pitch 60 \; tempo 60 \; scale major-scale \; velocity-min
+70 \; velocity-range 30 \; wind-vol 0 \; counter-onOff 0 \; pd dsp
+0;
+#X msg -124 112 \; voice1-on 0 \; voice2-on 0 \; voice3-on 0 \; voice4-on
+1 \; v1-pitch-min 0 \; v2-pitch-min 0 \; v3-pitch-min 0 \; v1-pitch-range
+8 \; v2-pitch-range 8 \; v3-pitch-range 8 \; v1-base-pitch 60 \; v2-base-pitch
+72 \; v3-base-pitch 60 \; tempo 120 \; scale major-scale \; velocity-min
+70 \; velocity-range 30 \; wind-vol 1 \; counter-onOff 1 \; pd dsp
+1;
+#X obj 149 93 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 3 378 \; voice1-on 1 \; voice2-on 0 \; voice3-on 0 \; voice4-on
+1 \; v1-pitch-min 2 \; v2-pitch-min 4 \; v3-pitch-min 0 \; v1-pitch-range
+8 \; v2-pitch-range 4 \; v3-pitch-range 15 \; v1-base-pitch 60 \; v2-base-pitch
+72 \; v3-base-pitch 60 \; tempo 60 \; scale major-scale \; velocity-min
+70 \; velocity-range 30 \; wind-vol 1 \; pd dsp 1;
+#X obj -123 86 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 0 85 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 19 85 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 174 84 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 296 84 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 326 83 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 639 79 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 19 104 \; voice1-on 1 \; voice2-on 1 \; voice3-on 0 \; voice4-on
+1 \; v1-pitch-min 2 \; v2-pitch-min 4 \; v3-pitch-min 0 \; v1-pitch-range
+8 \; v2-pitch-range 4 \; v3-pitch-range 15 \; v1-base-pitch 60 \; v2-base-pitch
+72 \; v3-base-pitch 60 \; tempo 60 \; scale major-scale \; velocity-min
+70 \; velocity-range 30 \; wind-vol 0.5 \; pd dsp 1;
+#X msg 149 384 \; voice1-on 1 \; voice2-on 1 \; voice3-on 1 \; voice4-on
+0 \; v1-pitch-min 2 \; v2-pitch-min 4 \; v3-pitch-min 0 \; v1-pitch-range
+8 \; v2-pitch-range 4 \; v3-pitch-range 15 \; v1-base-pitch 60 \; v2-base-pitch
+72 \; v3-base-pitch 60 \; tempo 60 \; scale major-scale \; velocity-min
+70 \; velocity-range 30 \; wind-vol 0 \; pd dsp 1;
+#X msg 174 105 \; voice1-on 1 \; voice2-on 1 \; voice3-on 1 \; voice4-on
+0 \; v1-pitch-min 0 \; v2-pitch-min 0 \; v3-pitch-min 4 \; v1-pitch-range
+7 \; v2-pitch-range 12 \; v3-pitch-range 13 \; v1-base-pitch 60 \;
+v2-base-pitch 72 \; v3-base-pitch 60 \; tempo 60 \; scale major-scale
+\; velocity-min 80 \; velocity-range 20 \; wind-vol 0 \; pd dsp 1;
+#X obj 449 80 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 475 82 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 608 81 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 296 386 \; voice1-on 1 \; voice2-on 1 \; voice3-on 1 \; voice4-on
+1 \; v1-pitch-min 0 \; v2-pitch-min 0 \; v3-pitch-min 4 \; v1-pitch-range
+8 \; v2-pitch-range 13 \; v3-pitch-range 6 \; v1-base-pitch 57 \; v2-base-pitch
+69 \; v3-base-pitch 57 \; tempo 60 \; scale harmonic-minor \; velocity-min
+50 \; velocity-range 50 \; wind-vol 0.5 \; pd dsp 1;
+#X obj 147 55 select 1 9 17 25 33 41 49 57 61 65 69;
+#X text 213 -54 polyphonic example;
+#X msg 325 109 \; voice1-on 1 \; voice2-on 1 \; voice3-on 1 \; voice4-on
+1 \; v1-pitch-min 0 \; v2-pitch-min 2 \; v3-pitch-min 4 \; v1-pitch-range
+15 \; v2-pitch-range 9 \; v3-pitch-range 6 \; v1-base-pitch 48 \; v2-base-pitch
+72 \; v3-base-pitch 60 \; tempo 60 \; scale harmonic-minor \; velocity-min
+50 \; velocity-range 40 \; wind-vol 0.5 \; pd dsp 1;
+#X msg 449 386 \; voice1-on 1 \; voice2-on 1 \; voice3-on 1 \; voice4-on
+1 \; v1-pitch-min 0 \; v2-pitch-min 2 \; v3-pitch-min 4 \; v1-pitch-range
+15 \; v2-pitch-range 9 \; v3-pitch-range 6 \; v1-base-pitch 48 \; v2-base-pitch
+72 \; v3-base-pitch 60 \; tempo 57 \; scale major-scale \; velocity-min
+65 \; velocity-range 40 \; wind-vol 0.6 \; pd dsp 1;
+#X msg 475 110 \; voice1-on 1 \; voice2-on 1 \; voice3-on 1 \; voice4-on
+1 \; v1-pitch-min 0 \; v2-pitch-min 0 \; v3-pitch-min 4 \; v1-pitch-range
+15 \; v2-pitch-range 9 \; v3-pitch-range 6 \; v1-base-pitch 48 \; v2-base-pitch
+72 \; v3-base-pitch 60 \; tempo 54 \; scale major-scale \; velocity-min
+60 \; velocity-range 20 \; wind-vol 0.7 \; pd dsp 1;
+#X msg 608 390 \; voice1-on 1 \; voice2-on 1 \; voice3-on 1 \; voice4-on
+1 \; v1-pitch-min 0 \; v2-pitch-min 2 \; v3-pitch-min 4 \; v1-pitch-range
+15 \; v2-pitch-range 9 \; v3-pitch-range 6 \; v1-base-pitch 48 \; v2-base-pitch
+72 \; v3-base-pitch 60 \; tempo 54 \; scale major-scale \; velocity-min
+90 \; velocity-range 20 \; wind-vol 1 \; pd dsp 1;
+#X text 228 -35 rainfall \, wind \, sunshine and temperature data;
+#X text 226 -15 mapped to different instruments;
+#X obj -90 -49 inlet;
+#X connect 1 0 4 0;
+#X connect 2 0 1 0;
+#X connect 3 0 2 0;
+#X connect 4 0 6 0;
+#X connect 5 0 4 3;
+#X connect 6 0 31 0;
+#X connect 7 0 9 0;
+#X connect 8 0 11 0;
+#X connect 9 0 10 0;
+#X connect 10 0 8 0;
+#X connect 15 0 25 0;
+#X connect 17 0 14 0;
+#X connect 18 0 16 0;
+#X connect 19 0 24 0;
+#X connect 20 0 26 0;
+#X connect 21 0 30 0;
+#X connect 22 0 33 0;
+#X connect 23 0 13 0;
+#X connect 27 0 34 0;
+#X connect 28 0 35 0;
+#X connect 29 0 36 0;
+#X connect 31 0 17 0;
+#X connect 31 1 18 0;
+#X connect 31 2 19 0;
+#X connect 31 3 15 0;
+#X connect 31 4 20 0;
+#X connect 31 5 21 0;
+#X connect 31 6 22 0;
+#X connect 31 7 27 0;
+#X connect 31 8 28 0;
+#X connect 31 9 29 0;
+#X connect 31 10 23 0;
+#X connect 39 0 2 0;
+#X restore 23 413 pd score;
+#N canvas 3 31 712 688 voice2 0;
+#X obj 25 29 cnv 15 600 600 empty empty www.algorithmiccomposer.com
+20 12 0 14 -261234 -66577 0;
+#X floatatom 209 294 8 0 0 0 - - -;
+#X obj 266 263 zl len;
+#X obj 209 263 maximum;
+#X obj 151 265 minimum;
+#X floatatom 151 295 8 0 0 0 - - -;
+#X obj 151 228 coll data;
+#C restore;
+#X floatatom 151 202 5 0 0 0 - - -;
+#X obj 55 239 coll data;
+#C restore;
+#X floatatom 54 161 5 0 0 0 - - -;
+#X floatatom 55 273 10 0 0 0 - - -;
+#X obj 54 83 metro 125;
+#X obj 54 61 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X obj 54 194 pack;
+#X msg 54 217 nth \$2 \$1;
+#X floatatom 101 510 5 0 0 0 - - -;
+#X obj 151 152 loadbang;
+#X obj 101 576 makenote 100 1000;
+#X obj 97 443 tabread major-scale;
+#X obj 249 429 * 12;
+#X floatatom 97 391 5 0 0 0 - - -;
+#X obj 101 489 +;
+#X floatatom 249 390 5 0 0 0 - - -;
+#X obj 96 344 expr $f4 + ($f1 - $f2) * ($f5 - $f4) / ($f3 - $f2 );
+#X text 495 254 These 5 numbers are;
+#X text 527 285 input min;
+#X text 527 300 input max;
+#X text 527 315 output min;
+#X text 527 330 output max;
+#X text 527 270 current value;
+#X obj 249 409 int;
+#X floatatom 249 449 5 0 0 0 - - -;
+#X obj 97 365 % 7;
+#X obj 249 370 / 7;
+#X obj 97 464 buddy;
+#X text 298 437 give the octave;
+#X text 144 489 add scale note and octave together;
+#X floatatom 317 94 5 0 0 0 - - -;
+#X obj 228 54 r bpm;
+#X obj 222 79 / 4;
+#X floatatom 219 106 5 0 0 0 - - -;
+#X obj 152 376 r scale;
+#X obj 152 400 symbol;
+#X msg 152 420 set \$1;
+#N canvas 0 22 624 619 velocity 0;
+#X obj 10 6 cnv 15 600 600 empty empty www.algorithmiccomposer.com
+20 12 0 14 -261234 -66577 0;
+#X obj 219 77 inlet;
+#X text 260 74 trigger in;
+#X obj 219 292 outlet;
+#X text 263 293 float out;
+#X obj 234 182 r velocity-min;
+#X obj 219 153 random;
+#X obj 252 124 r velocity-range;
+#X obj 219 125 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 219 211 +;
+#X floatatom 219 246 5 0 0 0 - - -;
+#X text 201 34 Velocity randomiser - outputs float between vel-min
+and vel-min + range;
+#X connect 1 0 8 0;
+#X connect 5 0 9 1;
+#X connect 6 0 9 0;
+#X connect 7 0 6 1;
+#X connect 8 0 6 0;
+#X connect 9 0 10 0;
+#X connect 10 0 3 0;
+#X restore 150 553 pd velocity;
+#X obj 123 50 r voice2-on;
+#X obj 401 277 r v2-pitch-range;
+#X obj 347 251 r v2-pitch-min;
+#X msg 151 173 2;
+#X obj 101 600 noteout 2;
+#X floatatom 352 274 5 0 0 0 - - -;
+#X obj 373 322 +;
+#X obj 105 536 + 60;
+#X obj 372 298 buddy;
+#X obj 152 518 r v2-base-pitch;
+#X obj 54 113 counter 1 12;
+#X obj 357 552 pddp/pddplink http://www.algorithmiccomposer.com -text
+http://www.algorithmiccomposer.com;
+#X connect 1 0 23 2;
+#X connect 2 0 37 0;
+#X connect 3 0 1 0;
+#X connect 4 0 5 0;
+#X connect 5 0 23 1;
+#X connect 6 0 4 0;
+#X connect 6 0 3 0;
+#X connect 6 0 2 0;
+#X connect 7 0 6 0;
+#X connect 7 0 13 1;
+#X connect 8 0 10 0;
+#X connect 9 0 13 0;
+#X connect 10 0 23 0;
+#X connect 11 0 55 0;
+#X connect 12 0 11 0;
+#X connect 13 0 14 0;
+#X connect 14 0 8 0;
+#X connect 15 0 44 0;
+#X connect 15 0 52 0;
+#X connect 16 0 48 0;
+#X connect 17 0 49 0;
+#X connect 17 1 49 1;
+#X connect 18 0 34 0;
+#X connect 19 0 31 0;
+#X connect 20 0 18 0;
+#X connect 21 0 15 0;
+#X connect 22 0 30 0;
+#X connect 23 0 32 0;
+#X connect 23 0 33 0;
+#X connect 30 0 19 0;
+#X connect 31 0 34 1;
+#X connect 32 0 20 0;
+#X connect 33 0 22 0;
+#X connect 34 0 21 0;
+#X connect 34 1 21 1;
+#X connect 37 0 55 4;
+#X connect 38 0 39 0;
+#X connect 39 0 40 0;
+#X connect 40 0 11 1;
+#X connect 41 0 42 0;
+#X connect 42 0 43 0;
+#X connect 43 0 18 0;
+#X connect 44 0 17 1;
+#X connect 45 0 12 0;
+#X connect 46 0 53 1;
+#X connect 47 0 50 0;
+#X connect 48 0 7 0;
+#X connect 50 0 23 3;
+#X connect 50 0 53 0;
+#X connect 51 0 23 4;
+#X connect 52 0 17 0;
+#X connect 53 0 51 0;
+#X connect 53 1 51 1;
+#X connect 54 0 52 1;
+#X connect 55 0 9 0;
+#X restore 22 457 pd voice2;
+#N canvas 0 27 829 616 voice1 0;
+#X obj 2 1 cnv 15 800 600 empty empty www.algorithmiccomposer.com 20
+12 0 14 -261234 -66577 0;
+#X floatatom 186 205 8 0 0 0 - - -;
+#X obj 243 185 zl len;
+#X obj 186 185 maximum;
+#X obj 128 187 minimum;
+#X floatatom 128 206 8 0 0 0 - - -;
+#X obj 128 159 coll data;
+#C restore;
+#X floatatom 128 139 5 0 0 0 - - -;
+#X obj 32 170 coll data;
+#C restore;
+#X floatatom 31 109 5 0 0 0 - - -;
+#X floatatom 32 195 10 0 0 0 - - -;
+#X obj 31 53 metro 125;
+#X obj 31 33 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X obj 31 129 pack;
+#X msg 31 150 nth \$2 \$1;
+#X floatatom 74 400 5 0 0 0 - - -;
+#X obj 128 93 loadbang;
+#X obj 74 442 makenote 100 1000;
+#X obj 74 338 tabread major-scale;
+#X obj 226 325 * 12;
+#X floatatom 74 291 5 0 0 0 - - -;
+#X obj 74 380 +;
+#X floatatom 226 286 5 0 0 0 - - -;
+#X obj 73 248 expr $f4 + ($f1 - $f2) * ($f5 - $f4) / ($f3 - $f2 );
+#X text 388 242 These 5 numbers are;
+#X text 420 273 input min;
+#X text 420 288 input max;
+#X text 420 303 output min;
+#X text 420 318 output max;
+#X text 420 258 current value;
+#X obj 226 305 int;
+#X floatatom 226 345 5 0 0 0 - - -;
+#X obj 74 269 % 7;
+#X obj 226 267 / 7;
+#X obj 74 359 buddy;
+#X text 275 332 give the octave;
+#X text 121 380 add scale note and octave together;
+#X floatatom 292 76 5 0 0 0 - - -;
+#X obj 199 22 r bpm;
+#X obj 199 45 / 4;
+#X floatatom 199 66 5 0 0 0 - - -;
+#X obj 129 274 r scale;
+#X obj 129 298 symbol;
+#X msg 129 318 set \$1;
+#N canvas 846 112 624 619 velocity 0;
+#X obj 10 6 cnv 15 600 600 empty empty www.algorithmiccomposer.com
+20 12 0 14 -261234 -66577 0;
+#X obj 219 77 inlet;
+#X text 260 74 trigger in;
+#X obj 219 292 outlet;
+#X text 263 293 float out;
+#X obj 234 182 r velocity-min;
+#X obj 219 153 random;
+#X obj 252 124 r velocity-range;
+#X obj 219 125 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 219 211 +;
+#X floatatom 219 246 5 0 0 0 - - -;
+#X text 201 34 Velocity randomiser - outputs float between vel-min
+and vel-min + range;
+#X connect 1 0 8 0;
+#X connect 5 0 9 1;
+#X connect 6 0 9 0;
+#X connect 7 0 6 1;
+#X connect 8 0 6 0;
+#X connect 9 0 10 0;
+#X connect 10 0 3 0;
+#X restore 123 421 pd velocity;
+#X floatatom 329 185 5 0 0 0 - - -;
+#X obj 376 226 +;
+#X obj 130 399 r v1-base-pitch;
+#X obj 99 22 r voice1-on;
+#X obj 329 164 r v1-pitch-min;
+#X obj 403 184 r v1-pitch-range;
+#X obj 376 206 buddy;
+#X obj 74 464 noteout 1;
+#X obj 74 421 +;
+#X msg 128 114 1;
+#X obj 31 87 counter 1 12;
+#X obj 420 379 pddp/pddplink http://www.algorithmiccomposer.com -text
+http://www.algorithmiccomposer.com;
+#X connect 1 0 23 2;
+#X connect 2 0 37 0;
+#X connect 3 0 1 0;
+#X connect 4 0 5 0;
+#X connect 5 0 23 1;
+#X connect 6 0 4 0;
+#X connect 6 0 3 0;
+#X connect 6 0 2 0;
+#X connect 7 0 6 0;
+#X connect 7 0 13 1;
+#X connect 8 0 10 0;
+#X connect 9 0 13 0;
+#X connect 10 0 23 0;
+#X connect 11 0 55 0;
+#X connect 12 0 11 0;
+#X connect 13 0 14 0;
+#X connect 14 0 8 0;
+#X connect 15 0 44 0;
+#X connect 15 0 53 0;
+#X connect 16 0 54 0;
+#X connect 17 0 52 0;
+#X connect 17 1 52 1;
+#X connect 18 0 34 0;
+#X connect 19 0 31 0;
+#X connect 20 0 18 0;
+#X connect 21 0 15 0;
+#X connect 22 0 30 0;
+#X connect 23 0 32 0;
+#X connect 23 0 33 0;
+#X connect 30 0 19 0;
+#X connect 31 0 34 1;
+#X connect 32 0 20 0;
+#X connect 33 0 22 0;
+#X connect 34 0 21 0;
+#X connect 34 1 21 1;
+#X connect 37 0 55 4;
+#X connect 38 0 39 0;
+#X connect 39 0 40 0;
+#X connect 40 0 11 1;
+#X connect 41 0 42 0;
+#X connect 42 0 43 0;
+#X connect 43 0 18 0;
+#X connect 44 0 17 1;
+#X connect 45 0 23 3;
+#X connect 45 0 51 0;
+#X connect 46 0 23 4;
+#X connect 47 0 53 1;
+#X connect 48 0 12 0;
+#X connect 49 0 45 0;
+#X connect 50 0 51 1;
+#X connect 51 0 46 0;
+#X connect 51 1 46 1;
+#X connect 53 0 17 0;
+#X connect 54 0 7 0;
+#X connect 55 0 9 0;
+#X restore 22 438 pd voice1;
+#N canvas 728 142 712 688 voice3 0;
+#X obj 25 29 cnv 15 600 600 empty empty www.algorithmiccomposer.com
+20 12 0 14 -261234 -66577 0;
+#X floatatom 209 294 8 0 0 0 - - -;
+#X obj 266 263 zl len;
+#X obj 209 263 maximum;
+#X obj 151 265 minimum;
+#X floatatom 151 295 8 0 0 0 - - -;
+#X obj 151 228 coll data;
+#C restore;
+#X floatatom 151 202 5 0 0 0 - - -;
+#X obj 55 239 coll data;
+#C restore;
+#X floatatom 54 161 5 0 0 0 - - -;
+#X floatatom 55 273 10 0 0 0 - - -;
+#X obj 54 83 metro 125;
+#X obj 54 61 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X obj 54 194 pack;
+#X msg 54 217 nth \$2 \$1;
+#X floatatom 101 510 5 0 0 0 - - -;
+#X obj 151 152 loadbang;
+#X text 481 5 www.algorithmiccomposer.com;
+#X obj 101 576 makenote 100 1000;
+#X obj 97 443 tabread major-scale;
+#X obj 249 429 * 12;
+#X floatatom 97 391 5 0 0 0 - - -;
+#X obj 101 489 +;
+#X floatatom 249 390 5 0 0 0 - - -;
+#X obj 96 344 expr $f4 + ($f1 - $f2) * ($f5 - $f4) / ($f3 - $f2 );
+#X text 495 254 These 5 numbers are;
+#X text 527 285 input min;
+#X text 527 300 input max;
+#X text 527 315 output min;
+#X text 527 330 output max;
+#X text 527 270 current value;
+#X obj 249 409 int;
+#X floatatom 249 449 5 0 0 0 - - -;
+#X obj 97 365 % 7;
+#X obj 249 370 / 7;
+#X obj 97 464 buddy;
+#X text 298 437 give the octave;
+#X text 144 489 add scale note and octave together;
+#X floatatom 317 94 5 0 0 0 - - -;
+#X obj 228 54 r bpm;
+#X obj 222 79 / 4;
+#X floatatom 219 106 5 0 0 0 - - -;
+#X obj 152 376 r scale;
+#X obj 152 400 symbol;
+#X msg 152 420 set \$1;
+#N canvas 0 22 624 619 velocity 0;
+#X obj 10 6 cnv 15 600 600 empty empty www.algorithmiccomposer.com
+20 12 0 14 -261234 -66577 0;
+#X obj 219 77 inlet;
+#X text 260 74 trigger in;
+#X obj 219 292 outlet;
+#X text 263 293 float out;
+#X obj 234 182 r velocity-min;
+#X obj 219 153 random;
+#X obj 252 124 r velocity-range;
+#X obj 219 125 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 219 211 +;
+#X floatatom 219 246 5 0 0 0 - - -;
+#X text 201 34 Velocity randomiser - outputs float between vel-min
+and vel-min + range;
+#X connect 1 0 8 0;
+#X connect 5 0 9 1;
+#X connect 6 0 9 0;
+#X connect 7 0 6 1;
+#X connect 8 0 6 0;
+#X connect 9 0 10 0;
+#X connect 10 0 3 0;
+#X restore 150 553 pd velocity;
+#X floatatom 352 274 5 0 0 0 - - -;
+#X obj 373 322 +;
+#X obj 105 536 + 60;
+#X obj 372 298 buddy;
+#X obj 401 277 r v3-pitch-range;
+#X obj 101 600 noteout 3;
+#X obj 152 518 r v3-base-pitch;
+#X obj 123 50 r voice3-on;
+#X obj 347 251 r v3-pitch-min;
+#X msg 151 172 3;
+#X obj 54 113 counter 1 12;
+#X obj 325 568 pddp/pddplink http://www.algorithmiccomposer.com -text
+http://www.algorithmiccomposer.com;
+#X connect 1 0 24 2;
+#X connect 2 0 38 0;
+#X connect 3 0 1 0;
+#X connect 4 0 5 0;
+#X connect 5 0 24 1;
+#X connect 6 0 4 0;
+#X connect 6 0 3 0;
+#X connect 6 0 2 0;
+#X connect 7 0 6 0;
+#X connect 7 0 13 1;
+#X connect 8 0 10 0;
+#X connect 9 0 13 0;
+#X connect 10 0 24 0;
+#X connect 11 0 56 0;
+#X connect 12 0 11 0;
+#X connect 13 0 14 0;
+#X connect 14 0 8 0;
+#X connect 15 0 45 0;
+#X connect 15 0 48 0;
+#X connect 16 0 55 0;
+#X connect 18 0 51 0;
+#X connect 18 1 51 1;
+#X connect 19 0 35 0;
+#X connect 20 0 32 0;
+#X connect 21 0 19 0;
+#X connect 22 0 15 0;
+#X connect 23 0 31 0;
+#X connect 24 0 33 0;
+#X connect 24 0 34 0;
+#X connect 31 0 20 0;
+#X connect 32 0 35 1;
+#X connect 33 0 21 0;
+#X connect 34 0 23 0;
+#X connect 35 0 22 0;
+#X connect 35 1 22 1;
+#X connect 38 0 56 4;
+#X connect 39 0 40 0;
+#X connect 40 0 41 0;
+#X connect 41 0 11 1;
+#X connect 42 0 43 0;
+#X connect 43 0 44 0;
+#X connect 44 0 19 0;
+#X connect 45 0 18 1;
+#X connect 46 0 24 3;
+#X connect 46 0 49 0;
+#X connect 47 0 24 4;
+#X connect 48 0 18 0;
+#X connect 49 0 47 0;
+#X connect 49 1 47 1;
+#X connect 50 0 49 1;
+#X connect 52 0 48 1;
+#X connect 53 0 12 0;
+#X connect 54 0 46 0;
+#X connect 55 0 7 0;
+#X connect 56 0 9 0;
+#X restore 22 480 pd voice3;
+#X obj 294 182 pddp/pddplink http://www.algorithmiccomposer.com -text
+http://www.algorithmiccomposer.com;
+#X text 17 37 Individual simple examples;
+#X text 22 374 Polyphonic example;
+#X obj 23 393 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 265 -14 SONIFICATION;
+#X connect 18 0 11 0;

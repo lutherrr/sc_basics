@@ -1,0 +1,27 @@
+#N canvas 870 306 458 407 10;
+#X obj 46 36 inlet;
+#X msg 50 81 read;
+#X obj 126 34 inlet;
+#X msg 127 81 start 65536;
+#X obj 50 115 seq;
+#X obj 149 120 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 149 144 outlet;
+#X obj 204 146 s finished;
+#X obj 50 177 midiparse ----------------;
+#X obj 50 217 unpack;
+#X obj 51 258 stripnote;
+#X obj 52 290 outlet;
+#X text 54 319 midi pitches out;
+#X text 50 11 open file play file;
+#X connect 0 0 1 0;
+#X connect 1 0 4 0;
+#X connect 2 0 3 0;
+#X connect 4 0 8 0;
+#X connect 4 1 5 0;
+#X connect 5 0 6 0;
+#X connect 5 0 7 0;
+#X connect 8 0 9 0;
+#X connect 9 0 10 0;
+#X connect 9 1 10 1;
+#X connect 10 0 11 0;
