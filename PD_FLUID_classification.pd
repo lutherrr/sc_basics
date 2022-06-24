@@ -1,0 +1,228 @@
+#N canvas 0 24 1360 696 12;
+#X declare -lib iemlib -path iemlib;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X array array1 2.53575e+06 float 2;
+#X coords 0 1 2.53575e+06 -1 200 140 1;
+#X restore 147 -13 graph;
+#X obj 21 -160 openpanel;
+#X obj 21 -184 bng 15 250 50 0 empty empty empty 0 -6 0 8 -262144 -1
+-1;
+#X obj 27 -86 soundfiler;
+#X msg 27 -112 read -resize \$1 array1;
+#X obj 27 -59 expr 44100 / $f1;
+#X floatatom 27 2 5 0 0 0 - - -;
+#X obj 27 54 phasor~;
+#X obj 27 94 *~;
+#X obj 62 88 unsig~ 50;
+#X obj 148 135 hsl 200 15 0 1 0 0 empty empty empty -2 -6 0 8 -262144
+-1 -1 0 1;
+#X text 294 173 0;
+#X obj 26 131 tabread4~ array1;
+#X obj 28 253 dac~;
+#X obj 27 27 *;
+#X obj 64 -30 t b f;
+#X obj 286 -190 declare -lib iemlib -path iemlib;
+#X msg 162 -47 1;
+#X msg 163 -71 0;
+#X msg 101 -164 read /Users/lisek/Desktop/sound_PIANO/Olencki-TenTromboneLongTones-M.wav
+array1;
+#X obj 294 203 fluid.mfcc~ 13;
+#X obj 294 232 unpack f f f f f f f f f f f f f;
+#X obj 294 277 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 309 277 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 324 277 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 339 277 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 354 277 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 369 277 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 384 277 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 399 277 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 414 277 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 429 277 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 444 277 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 459 277 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 474 277 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 124 283 else/buffer \$0-buffer;
+#X obj 154 409 cnv 15 98 68 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#N canvas 501 57 627 402 (subpatch) 0;
+#X array mfccbuf 13 float 3;
+#A 0 -1851.82 28.9355 79.3908 71.2746 75.012 70.7473 73.8763 73.3132
+66.258 65.5401 63.6043 61.5039 66.7472;
+#X coords 0 0 13 127 100 70 1 0 0;
+#X restore 153 408 graph;
+#X obj 130 257 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 156 328 buffer mfccbuf;
+#X obj 968 -72 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 988 -76 add point;
+#X obj 968 -39 counter;
+#X obj 968 -7 list append;
+#X obj 922 -8 else/display;
+#X obj 827 57 else/display;
+#X msg 760 68 print;
+#X msg 816 36 addpoint \$1 mfccbuf;
+#X obj 812 100 fluid.dataset mfccdata;
+#X msg 1135 -26 symbol trombone;
+#X msg 1006 66 addlabel \$1 \$2;
+#X msg 1179 11 symbol oboe;
+#X obj 843 375 print;
+#X obj 968 162 metro 100;
+#X obj 968 140 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X floatatom 1028 138 5 0 0 0 - - -;
+#X obj 857 260 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 858 237 PREDICT;
+#X obj 973 240 metro 100;
+#X obj 973 218 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X floatatom 1033 216 5 0 0 0 - - -;
+#X msg 80 192 0;
+#X text 36 -189 load;
+#X obj 908 366 else/display;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X array array2 2.42018e+06 float 2;
+#X coords 0 1 2.42018e+06 -1 200 140 1;
+#X restore 525 0 graph;
+#X obj 405 -73 soundfiler;
+#X obj 405 -46 expr 44100 / $f1;
+#X floatatom 405 15 5 0 0 0 - - -;
+#X obj 405 67 phasor~;
+#X obj 405 107 *~;
+#X obj 440 101 unsig~ 50;
+#X obj 526 148 hsl 200 15 0 1 0 0 empty empty empty -2 -6 0 8 -262144
+-1 -1 0 1;
+#X obj 405 40 *;
+#X obj 442 -17 t b f;
+#X msg 540 -34 1;
+#X msg 541 -58 0;
+#X msg 405 -99 read -resize \$1 array2;
+#X obj 404 144 tabread4~ array2;
+#X msg 545 -161 read /Users/lisek/Desktop/sound_PIANO/Harker-DS-TenOboeMultiphonics-M.wav
+array1;
+#X obj 1055 373 else/display;
+#X obj 985 369 else/display;
+#X msg 857 287 predictpoint mfccbuf predictions;
+#X obj 817 317 fluid.mlpclassifier hidden 5 activation 1 learnrate
+0.05 maxiter 1000;
+#X obj 1006 101 fluid.labelset instr;
+#X msg 817 201 fit mfccdata instr;
+#X obj 103 -189 loadbang;
+#X obj 547 -189 loadbang;
+#X text 867 -39 TRAIN;
+#X text 816 160 FIT /min lost;
+#X msg 1151 75 clear;
+#X obj 1004 41 join 2 @triggers -1;
+#X obj 27 191 *~ 0.5;
+#X obj 25 404 cnv 15 98 68 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#N canvas 0 23 450 278 (subpatch) 0;
+#X array \$0-buffer 13 float 3;
+#A 0 -1851.82 28.9355 79.3908 71.2746 75.012 70.7473 73.8763 73.3132
+66.258 65.5401 63.6043 61.5039 66.7472;
+#X coords 0 0 13 127 100 70 1 0 0;
+#X restore 24 403 graph;
+#X msg 80 215 0.5;
+#X text 1164 374 Lost;
+#X text 402 193 Mel-Frequency Cepstral Coefficients, f 73;
+#X text 401 207 Spectral Descriptors in Real-Time;
+#X connect 1 0 4 0;
+#X connect 2 0 1 0;
+#X connect 3 0 5 0;
+#X connect 3 0 8 1;
+#X connect 4 0 3 0;
+#X connect 5 0 6 0;
+#X connect 6 0 14 0;
+#X connect 7 0 8 0;
+#X connect 7 0 9 0;
+#X connect 8 0 12 0;
+#X connect 9 0 10 0;
+#X connect 12 0 20 0;
+#X connect 12 0 91 0;
+#X connect 14 0 7 0;
+#X connect 15 0 6 0;
+#X connect 15 1 14 1;
+#X connect 17 0 15 0;
+#X connect 18 0 15 0;
+#X connect 19 0 4 0;
+#X connect 20 0 21 0;
+#X connect 20 0 35 0;
+#X connect 21 0 22 0;
+#X connect 21 1 23 0;
+#X connect 21 2 24 0;
+#X connect 21 3 25 0;
+#X connect 21 4 26 0;
+#X connect 21 5 27 0;
+#X connect 21 6 28 0;
+#X connect 21 7 29 0;
+#X connect 21 8 30 0;
+#X connect 21 9 31 0;
+#X connect 21 10 32 0;
+#X connect 21 11 33 0;
+#X connect 21 12 34 0;
+#X connect 35 0 39 0;
+#X connect 38 0 35 0;
+#X connect 40 0 42 0;
+#X connect 42 0 43 0;
+#X connect 43 0 44 0;
+#X connect 43 0 47 0;
+#X connect 43 0 90 0;
+#X connect 46 0 48 0;
+#X connect 46 0 83 0;
+#X connect 47 0 45 0;
+#X connect 47 0 48 0;
+#X connect 49 0 90 1;
+#X connect 50 0 83 0;
+#X connect 51 0 90 1;
+#X connect 53 0 84 0;
+#X connect 54 0 53 0;
+#X connect 55 0 53 1;
+#X connect 56 0 81 0;
+#X connect 58 0 56 0;
+#X connect 59 0 58 0;
+#X connect 60 0 58 1;
+#X connect 61 0 91 1;
+#X connect 65 0 66 0;
+#X connect 65 0 69 1;
+#X connect 66 0 67 0;
+#X connect 67 0 72 0;
+#X connect 68 0 69 0;
+#X connect 68 0 70 0;
+#X connect 69 0 77 0;
+#X connect 70 0 71 0;
+#X connect 72 0 68 0;
+#X connect 73 0 67 0;
+#X connect 73 1 72 1;
+#X connect 74 0 73 0;
+#X connect 75 0 73 0;
+#X connect 76 0 65 0;
+#X connect 77 0 20 0;
+#X connect 77 0 91 0;
+#X connect 78 0 76 0;
+#X connect 81 0 82 0;
+#X connect 82 0 52 0;
+#X connect 82 0 63 0;
+#X connect 82 1 80 0;
+#X connect 82 2 79 0;
+#X connect 84 0 82 0;
+#X connect 85 0 19 0;
+#X connect 86 0 78 0;
+#X connect 89 0 83 0;
+#X connect 90 0 50 0;
+#X connect 91 0 13 0;
+#X connect 91 0 13 1;
+#X connect 94 0 91 1;
